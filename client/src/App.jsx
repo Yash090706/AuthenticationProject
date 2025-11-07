@@ -5,6 +5,7 @@ import Home from './Pages/Home'
 import About from './Pages/About'
 import Profile from './Pages/Profile'
 import Header from './Components/Header'
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
 
 
     </Routes>
+    <ToastContainer/>
     </BrowserRouter>
   )
 }

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import OAuth from '../Components/OAuth';
 
 const SignUp = () => {
   const [loading,setloading]=useState(false);
@@ -55,7 +56,7 @@ const SignUp = () => {
 
   }
   return (
-    <div className='max-w-lg mx-auto bg-blue-200 h-[60vh] shadow-xl rounded-3xl mt-20 '>
+    <div className='max-w-lg mx-auto bg-blue-200 h-[70vh] shadow-xl rounded-3xl mt-20 '>
       <ToastContainer/>
       <h1 className="font-bold text-4xl text-center m-7 p-3">Sign up</h1>
       <form className='flex flex-col gap-4 'onSubmit={handleSubmit}>
@@ -63,6 +64,7 @@ const SignUp = () => {
         <input type="email" placeholder="Email" id="email" value={formdata.email}className='bg-slate-200 p-3 rounded-lg' onChange={handleChange}></input>
         <input type="password" placeholder="Password" id="password" value={formdata.password} className='bg-slate-200 p-3 rounded-lg' onChange={handleChange}></input>
         <button disabled={loading} type="submit" className='bg-blue-500 rounded-lg p-3 hover:cursor-pointer hover:opacity-70 uppercase text-white'>{loading ? "Loading..." :" Sign up"}</button>
+        <OAuth/>
       </form>
       <div className='p-5 flex gap-2 font-medium'>
         <p >Already Have an Account ?</p>

@@ -6,6 +6,7 @@ import { ToastContainer,toast} from "react-toastify";
 import { SignInFailure,SignInStart,SignInSuccess } from "../Redux/User/UserSlice";
 import {useDispatch} from "react-redux";
 import { useSelector } from "react-redux";
+import OAuth from "../Components/OAuth";
 // import {user} from "../Redux/User/UserSlice";
 const SignIn = () => {
   const navigate=useNavigate();
@@ -56,7 +57,7 @@ const SignIn = () => {
   }
 
   return (
-    <div className="bg-blue-200 h-[400px] w-[500px] m-auto rounded-3xl shadow-xl mt-20">
+    <div className="bg-blue-200 h-[500px] w-[500px] m-auto rounded-3xl shadow-xl mt-20">
       <ToastContainer/>
       <h1 className="font-bold text-center m-7 p-3 text-4xl">Sign In</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -79,6 +80,7 @@ const SignIn = () => {
         <button disabled={loading} type="submit" className="bg-blue-500 p-3 rounded-lg uppercase text-white hover:opacity-70 hover:cursor-pointer hover:bg-green-400">
           {loading ? "Loading...":"Sign In"}
         </button>
+        <OAuth/>
       </form>
       <div className="flex gap-2 p-5 font-medium">
         <p>Dont Have An Account ?</p>

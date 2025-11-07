@@ -44,4 +44,36 @@ const signin = async (req, res, next) => {
         next(err);
     }
 };
-module.exports = { signup ,signin};
+const google_signin=async(req,res,next)=>{
+  try{
+    const user= await userModel.findOne({email:req.body.email});
+    if(user){
+      const{password:hashpassword,...others}=user._doc;
+      const token=jwt.sign({id:user._id},process.env.JWT_SECRET_KEY)
+      res.cookie("AuthToken",token,{httpOnly:true,expires:new Date(Date.now()+60*60*1000)}).status(200).json(others);
+
+    }
+    else{
+      const generatedpassword=Math.random().toString().slice(-8)+Math.random().toString().slice(-8);
+      const saltrounds=10;
+      const hashedgenpassword=bcryptjs.hashSync(generatedpassword,saltrounds);
+      const newuser= new userModel({
+        username:req.body.name.split("").join("").toLowerCase()+Math.floor(Math.random()*10000).toString(),
+        email:req.body.email,
+        password:hashedgenpassword,
+       profilephoto:req.body.photoURL
+         });
+        await newuser.save();
+         const{password,...rest}=newuser._doc;
+         const token=jwt.sign({id:newuser._id},process.env.JWT_SECRET_KEY)
+         res.cookie("AuthToken",token,{httpOnly:true,expires:new Date(Date.now()+60*60*1000)}).status(200).json(rest);
+
+
+
+
+    }
+  }catch(err){
+    next(err);
+  }
+}
+module.exports = { signup ,signin,google_signin};
