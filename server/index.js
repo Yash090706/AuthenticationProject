@@ -2,11 +2,12 @@ const express=require("express");
 const app=express();
 app.use(express.json());
 require("dotenv").config({path:"../.env"});
-const { userRoutes } = require("./Routes/userRoutes");
+// const { userRoutes } = require("./Routes/userRoutes");
 // Connecting to Database
 const mongoose=require("mongoose");
 const { authRoute } = require("./Routes/authRoutes");
-const cors=require("cors")
+const cors=require("cors");
+const userroute = require("./Routes/userRoutes");
 app.use(cors());
 
 mongoose.connect(process.env.MONGODB).then(()=>{
@@ -16,7 +17,7 @@ mongoose.connect(process.env.MONGODB).then(()=>{
 
 })
 // Static URL/Route
-app.use("/api/user",userRoutes)
+app.use("/api/user",userroute)
 app.use("/api/auth",authRoute)
 
 // Handling Middlewares

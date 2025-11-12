@@ -1,8 +1,7 @@
 const express=require("express");
-const { test } = require("../Controllers/userController");
+const upload = require("../MiddleWare/multer");
+const imageupdate = require("../Controllers/userController");
+const userroute=express.Router();
 
-let userRoutes=express.Router();
-
-userRoutes.get("/server",test);
-
-module.exports={userRoutes}
+userroute.post("/updateimage",upload.single("profile"),imageupdate);
+module.exports = userroute;

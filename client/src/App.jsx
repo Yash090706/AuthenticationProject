@@ -6,6 +6,7 @@ import About from './Pages/About'
 import Profile from './Pages/Profile'
 import Header from './Components/Header'
 import { ToastContainer } from 'react-toastify'
+import PrivateRoute from './Components/PrivateRoute'
 
 const App = () => {
   return (
@@ -16,7 +17,11 @@ const App = () => {
       <Route path="/signup" element={<SignUp/>}/>
       <Route path="/signin" element={<SignIn/>}/>
       <Route path="/about" element={<About/>}/>
-      <Route path="/profile" element={<Profile/>}/>
+     <Route element={<PrivateRoute/>}>
+        <Route path="/profile" element={<Profile/>}/>
+
+    </Route>
+      
 
 
 

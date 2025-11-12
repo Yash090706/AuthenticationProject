@@ -61,12 +61,13 @@ const google_signin=async(req,res,next)=>{
         username:req.body.name.split("").join("").toLowerCase()+Math.floor(Math.random()*10000).toString(),
         email:req.body.email,
         password:hashedgenpassword,
-       profilephoto:req.body.photoURL
+       profilephoto:req.body.photo,
          });
         await newuser.save();
          const{password,...rest}=newuser._doc;
          const token=jwt.sign({id:newuser._id},process.env.JWT_SECRET_KEY)
-         res.cookie("AuthToken",token,{httpOnly:true,expires:new Date(Date.now()+60*60*1000)}).status(200).json(rest);
+         res.cookie("AuthToken",token,{httpOnly:true,expires:new Date(Date.now()+60*60*1000)}).status(200).json(
+          rest);
 
 
 

@@ -16,11 +16,11 @@ function OAuth() {
             const provider=new GoogleAuthProvider();
             const auth=getAuth(app);
             const result= await signInWithPopup(auth,provider);
-            // console.log(result)
+            console.log(result)
             const name=result.user.displayName;
             const email=result.user.email;
-            const photoURL=result.user.photoURL;
-            axios.post("http://localhost:8000/api/auth/google",{name,email,photoURL}).then((res)=>{
+            const photo=result.user.photoURL;
+            axios.post("http://localhost:8000/api/auth/google",{name,email,photo}).then((res)=>{
                 console.log(res.data)
                 dispatch(SignInSuccess(res.data))
                 toast.success("Signed In SuccessFully Via Google.")
