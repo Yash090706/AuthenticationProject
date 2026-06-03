@@ -20,6 +20,7 @@ mongoose.connect(process.env.MONGODB).then(()=>{
 app.use("/api/user",userroute)
 app.use("/api/auth",authRoute)
 
+console.log("Authentication")
 // Handling Middlewares
 app.use((err,req,res,next)=>{
     const statuscode=err.statuscode || 500
